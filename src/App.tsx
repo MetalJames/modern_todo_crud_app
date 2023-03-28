@@ -1,12 +1,19 @@
 import { useState } from 'react'
-import './App.css'
+import CustomForm from './components/CustomForm'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+
+  const addTask = (task: string[]) => {
+    console.log(task);
+  }
 
   return (
-    <div className="App">
-      
+    <div className="container">
+      <header>
+        <h1>My Task List</h1>
+      </header>
+      <CustomForm addTask={addTask} />
     </div>
   )
 }
