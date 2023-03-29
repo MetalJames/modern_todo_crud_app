@@ -1,24 +1,30 @@
 import { useState } from 'react'
+
+//custom hook
+import useLocalStorage from './hooks/useLocalStorage';
+
+//components
 import CustomForm from './components/CustomForm'
 import EditForm from './components/EditForm'
 import TaskList from './components/TaskList';
 
 function App() {
-  const [tasks, setTasks] = useState<{ name: string; checked: boolean, id: string }[]>([]);
+  const [tasks, setTasks] = useLocalStorage('react-todo.tasks', []);
+  // const [tasks, setTasks] = useState<{ name: string; checked: boolean, id: string }[]>([]);
   const [editedTask, setEditedTask] = useState<null>(null);
   const [previousFocusEl, setPreviousFocusEl] = useState<any>(null);
   const [isEdited, setIsEdited] = useState(false);
 
   const addTask = (task: any) => {
-    setTasks(prevState => [...prevState, task])
+    setTasks((prevState: any) => [...prevState, task])
   }
 
   const deleteTask = (id: string) => {
-    setTasks((prevState) => prevState.filter((task) => task.id !== id));
+    setTasks((prevState: any[]) => prevState.filter((task: { id: string; }) => task.id !== id));
   };
 
   const toggleTask = (id: string) => {
-    setTasks(prevState => prevState.map(task => task.id === id ? { ...task, checked: !task.checked } : task))
+    setTasks((prevState: any[]) => prevState.map((task) => task.id === id ? { ...task, checked: !task.checked } : task))
   }
 
   const closeEditMode = () => {
@@ -27,7 +33,7 @@ function App() {
   }
 
   const updateTask = (task: any) => {
-    setTasks(prevState => prevState.map(oldTask => oldTask.id === task.id ? { ...task, name: task.name } : task))
+    setTasks((prevState: any[]) => prevState.map(oldTask => oldTask.id === task.id ? { ...task, name: task.name } : task))
     closeEditMode();
   }
 
