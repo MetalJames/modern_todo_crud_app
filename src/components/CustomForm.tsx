@@ -38,7 +38,7 @@ const CustomForm = (props: CustomFormProps) => {
                 <label htmlFor='task' className='label'>Enter Task</label>
             </div>
             <button className='btn' aria-label='Add Task' type='submit'>
-                <PlusIcon className="h-6 w-6 text-blue-500"/>
+                <PlusIcon strokeWidth={2} width={24} height={24}/>
             </button>
         </form>
     )

@@ -14,11 +14,12 @@ type TaskItemProps = {
     },
     deleteTask: any,
     toggleTask: any,
+    enterEditMode: any,
 }
 
 const TaskItem = (props: TaskItemProps) => {
 
-    const { task, deleteTask, toggleTask } = props;
+    const { task, deleteTask, toggleTask, enterEditMode } = props;
 
     const [isChecked, setIsChecked] = useState(task.checked);
 
@@ -40,7 +41,7 @@ const TaskItem = (props: TaskItemProps) => {
             </ div>
             <div className={styles['task-group']}>
                 <button className='btn' aria-label={`Update ${task.name} Task`}
-                // onClick={() => toggleTask(task.id)}
+                onClick={() => enterEditMode(task)}
                 >
                     <PencilSquareIcon width={24} height={24} />
                 </button>
