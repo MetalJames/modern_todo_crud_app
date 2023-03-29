@@ -11,12 +11,13 @@ type TaskItemProps = {
         name: string; 
         checked: boolean, 
         id: string
-    }
+    },
+    deleteTask: any,
 }
 
 const TaskItem = (props: TaskItemProps) => {
 
-    const { task } = props;
+    const { task, deleteTask } = props;
 
     const [isChecked, setIsChecked] = useState(task.checked);
 
@@ -34,18 +35,18 @@ const TaskItem = (props: TaskItemProps) => {
                         <CheckIcon strokeWidth={2} width={24} height={24}/>
                     </p>
                 </label>
-                <div className={styles['task-group']}>
-                    <button className='btn' aria-label={`Update ${task.name} Task`}
-                    // onClick={}
-                    >
-                        <PencilSquareIcon width={24} height={24} />
-                    </button>
-                    <button className={`btn ${styles.delete}`} aria-label={`Delete ${task.name} Task`}
-                    // onClick={}
-                    >
-                        <TrashIcon width={24} height={24} />
-                    </button>
-                </div>
+            </ div>
+            <div className={styles['task-group']}>
+                <button className='btn' aria-label={`Update ${task.name} Task`}
+                // onClick={}
+                >
+                    <PencilSquareIcon width={24} height={24} />
+                </button>
+                <button className={`btn ${styles.delete}`} aria-label={`Delete ${task.name} Task`}
+                    onClick={() => deleteTask(task.id)}
+                >
+                    <TrashIcon width={24} height={24} />
+                </button>
             </div>
         </li>
     )
