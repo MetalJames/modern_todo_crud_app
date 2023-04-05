@@ -13,7 +13,7 @@ const EditForm = (props: EditFormProps) => {
 
     const { editedTask, updateTask, closeEditMode } = props;
 
-    const [updatedTaskName, setUpdatedTaskNamek] = useState(editedTask.name);
+    const [updatedTaskName, setUpdatedTaskName] = useState(editedTask.name);
 
     useEffect(() => {
         const closeModalIfEscaped = (e: { key: string; }) => {e.key === 'Escape' && closeEditMode()};
@@ -32,7 +32,7 @@ const EditForm = (props: EditFormProps) => {
             <form className='todo' onSubmit={handleFormSubmit}>
                 <div className='wrapper'>
                     <input type="text" id='editTask' className='input' 
-                    value={updatedTaskName} onInput={(e : React.ChangeEvent<HTMLInputElement>) => setUpdatedTaskNamek(e.target.value)} 
+                    value={updatedTaskName} onInput={(e : React.ChangeEvent<HTMLInputElement>) => setUpdatedTaskName(e.target.value)} 
                     // can be don in two ways first one above and second one below
                     // value={task} onInput={(e) => setTask((e.target as HTMLInputElement).value)} 
                     required
